@@ -2,7 +2,10 @@
 #!/usr/bin/ruby
 
 require 'google/api_client'
+require 'yaml'
 require 'pp'
+
+DEFINE = YAML::load(File.open('config/define.yml'))
 
 class GoogleClient
 
@@ -14,7 +17,7 @@ class GoogleClient
       :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
       :audience             => 'https://accounts.google.com/o/oauth2/token',
       :scope                => 'https://www.googleapis.com/auth/youtube',
-      :issuer               => '984325115979-g9uug2fhjnp3oa68br34uegtoaqk40ii@developer.gserviceaccount.com',
+      :issuer               => DEFINE['issuer'],
       :signing_key          => key
     )
     client.authorization.fetch_access_token!
