@@ -32,10 +32,13 @@ class GoogleClient
 
     search_response_json = google_client.execute!(
       :api_method => youtube_client.search.list,
-      :parameters => {
-        :part => 'snippet',
-        :q => 'google',
-        :maxResults => 25
+      :parameters => {              # https://developers.google.com/youtube/v3/docs/search/list?hl=ja
+        :part       => 'snippet',
+        :q          => 'Google',    # search word
+        :maxResults => 50,          # 0-50
+        :fields     => 'items',
+        :order      => 'viewCount',
+        :type       => 'channel',
       }
     )
 
